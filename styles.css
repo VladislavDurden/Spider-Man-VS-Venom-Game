@@ -1,0 +1,18 @@
+.room {
+    margin: 12vh auto;
+    width: 490px;
+    height: 490px;
+}
+
+.grids {
+    border: 1px solid #2d2d2d;
+    padding: 0;
+    list-style: none;
+}
+
+.element {
+    width: 490px;
+    height: 70px;
+    margin: 0 -1px -1px 0;
+
+}
