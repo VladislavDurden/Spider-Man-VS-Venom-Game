@@ -1,52 +1,70 @@
+// Создаем комнату
+var i = 0;
+while (i < 49) {
+    i++;
+    document.body.innerHTML = (
+        "<div class=col></div></div>"
+    ).repeat(i);
 
-//создал комнату
-function matrixArray(rows, columns) {
-    var arr = new Array();
-    for (var i = 0; i < rows; i++) {
-        arr[i] = new Array();
-        for (var j = 0; j < columns; j++) {
-            arr[i][j] = i;
-        }
+};
+
+var elements = document.querySelectorAll('div.col');
+console.log(elements);
+
+
+
+
+// Перемещение героя
+var push = function (num) {
+    elements[num].innerHTML = '<img id="hero" src="hero.png">';
+};
+
+var start = 24;
+push(start);
+
+var del = function (num) {
+    document.getElementById('hero').parentNode.removeChild(document.getElementById('hero'));
+};
+
+// Поворот картинки
+var rotate = function (deg) {
+    document.getElementById('hero').style.transform = 'rotate(' + deg + 'deg)';
+};
+
+// Управление с клавиатуры
+document.addEventListener('keydown', event => {
+
+    // если нажата клавиша влево
+    if (event.keyCode === 37) {
+        del(start);
+        start--;
+        push(start);
+        rotate(-90);
+
     }
-    console.log(arr);
-    return arr;
-}
-var myMatrix = matrixArray(7, 7);
+    // если нажата клавиша вправо
+    else if (event.keyCode === 39) {
+        del(start);
+        start++;
+        push(start);
+        rotate(90);
+    }
+    // если нажата клавиша вверх
+    else if (event.keyCode === 38) {
+        del(start);
+        for (i = 0; i < 7; i++) {
+            start--;
+        }
+        push(start);
+    }
+    // если нажата клавиша вниз
+    else if (event.keyCode === 40) {
+        del(start);
+        for (i = 0; i < 7; i++) {
+            start++;
+        }
+        push(start);
+        rotate(180);
+    }
 
-(function(){ 
-    
-    for (i = 0; i <= myMatrix.length; i++) {
-    document.querySelector('.grids').innerHTML = myMatrix.map(el => '<li class="element"></li>').join('');
-    } 
-    
-})();
-
-
-//Герой
-var hero = document.querySelector('.hero');
-myMatrix[0][0] = hero;
-
-
-
-
-//switch(e.keyCode){
-//         
-//        case 37:  // если нажата клавиша влево
-//                hero.indexOf = hero.indexOf - 1 ;
-//            break;
-//        
-//        case 38:   // если нажата клавиша вверх
-//                hero.indexOf = hero.indexOf - 1 ;
-//            break;
-//        
-//        case 39:   // если нажата клавиша вправо
-//                hero.indexOf = hero.indexOf + 1 ;
-//            break;
-//        
-//        case 40:   // если нажата клавиша вниз
-//                hero.indexOf = hero.indexOf + 1 ;
-//            break;
-//    };
-
-
-
+});
