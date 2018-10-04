@@ -87,15 +87,12 @@ function goDown() {
 
 
 // Random move generation
-function startRandom() {
-    setInterval(function () {
-        const ALL_GO_FUNCTIONS = [goDown, goRight, goUp, goLeft];
-        var rand = Math.random() * ALL_GO_FUNCTIONS.length;
-        rand = Math.floor(rand);
-        ALL_GO_FUNCTIONS[rand]();
-    }, 1000);
-};
-
+setInterval(function () {
+    const ALL_GO_FUNCTIONS = [goDown, goRight, goUp, goLeft];
+    var rand = Math.random() * ALL_GO_FUNCTIONS.length;
+    rand = Math.floor(rand);
+    ALL_GO_FUNCTIONS[rand]();
+}, 1000);
 
 // Keyboard control
 document.addEventListener('keydown', event => {
