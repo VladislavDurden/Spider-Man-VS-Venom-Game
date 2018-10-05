@@ -8,7 +8,7 @@ var elements = document.querySelectorAll('div.col');
 
 // Hero movement
 var push = function (num) {
-    elements[num].innerHTML = '<img id="hero" src="hero.png">';
+    elements[num].innerHTML = '<img id="hero" src="hero.gif">';
 };
 var start = 0; //First hero position
 push(start);
@@ -20,6 +20,10 @@ var del = function (num) {
 // Picture rotation
 var rotate = function (deg) {
     document.getElementById('hero').style.transform = 'rotate(' + deg + 'deg)';
+};
+
+var mirror = function () {
+    document.getElementById('hero').style.transform = 'scaleX(-1)';
 };
 
 
@@ -41,9 +45,9 @@ function goLeft() {
         del(start);
         start--;
         push(start);
-        rotate(-90);
+        mirror();
     } else {
-        rotate(-90);
+        mirror();
     }
 };
 
@@ -52,9 +56,9 @@ function goRight() {
         del(start);
         start++;
         push(start);
-        rotate(90);
+        rotate(0);
     } else {
-        rotate(90);
+        rotate(0);
     }
 };
 
@@ -65,9 +69,10 @@ function goUp() {
             start--;
         }
         push(start);
+        rotate(-90);
 
     } else {
-        rotate(0);
+        rotate(-90);
     }
 };
 
@@ -78,21 +83,21 @@ function goDown() {
             start++;
         }
         push(start);
-        rotate(180);
+        rotate(90);
 
     } else {
-        rotate(180);
+        rotate(90);
     }
 };
 
 
 // Random move generation
-setInterval(function () {
-    const ALL_GO_FUNCTIONS = [goDown, goRight, goUp, goLeft];
-    var rand = Math.random() * ALL_GO_FUNCTIONS.length;
-    rand = Math.floor(rand);
-    ALL_GO_FUNCTIONS[rand]();
-}, 1000);
+//setInterval(function () {
+//    const ALL_GO_FUNCTIONS = [goDown, goRight, goUp, goLeft];
+//    var rand = Math.random() * ALL_GO_FUNCTIONS.length;
+//    rand = Math.floor(rand);
+//    ALL_GO_FUNCTIONS[rand]();
+//}, 1000);
 
 // Keyboard control
 document.addEventListener('keydown', event => {
